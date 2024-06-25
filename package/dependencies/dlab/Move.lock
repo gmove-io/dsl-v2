@@ -2,10 +2,12 @@
 
 [move]
 version = 2
-manifest_digest = "E4219A7397D78E61B71608B529FA7EA848B1C67E2ED0B0621AA8F27D3178A2CF"
-deps_digest = "3C4103934B1E040BB6B23F1D610B4EF9F2F1166A50A104EADCF77467C004C600"
+manifest_digest = "E3F9945E7F773AFB34CE34C894ECBAC5524F7095E2E959D6171C919E77B9D7EF"
+deps_digest = "F9B494B64F0615AED0E98FC12A85B85ECD2BC5185C22D30E7F67786BB52E507C"
 dependencies = [
+  { name = "Launchpad" },
   { name = "NftProtocol" },
+  { name = "Permissions" },
   { name = "Sui" },
 ]
 
@@ -35,6 +37,18 @@ dependencies = [
   { name = "Permissions" },
   { name = "Request" },
   { name = "Sui" },
+]
+
+[[move.package]]
+name = "Launchpad"
+source = { git = "https://github.com/Origin-Byte/nft-protocol.git", rev = "main", subdir = "contracts/launchpad" }
+
+dependencies = [
+  { name = "Kiosk" },
+  { name = "Originmate" },
+  { name = "Pseudorandom" },
+  { name = "Sui" },
+  { name = "Utils" },
 ]
 
 [[move.package]]

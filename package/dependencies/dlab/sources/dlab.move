@@ -1,19 +1,42 @@
 module  dlab::dlab {
-    // struct DLAB has drop {
-    //     dummy_field: bool,
-    // }
+
+    use std::{
+        ascii,
+        string::String,
+    };
+
+    use sui::{
+        url::{Self, Url},
+    };
+
+    use nft_protocol::{
+        mint_event,
+        mint_cap::{Self, MintCap},
+        attributes::{Self, Attributes}
+    };
+
+    use ob_launchpad::{
+        warehouse::{Self, Warehouse}
+    };
+
+    use ob_permissions::{
+        witness
+    };
+
+    public struct DLAB has drop {
+    }
     
-    // struct Witness has drop {
-    //     dummy_field: bool,
-    // }
+    public struct Witness has drop {
+        dummy_field: bool,
+    }
     
-    // struct Dlab has store, key {
-    //     id: 0x2::object::UID,
-    //     name: 0x1::string::String,
-    //     description: 0x1::string::String,
-    //     url: 0x2::url::Url,
-    //     attributes: 0xbc3df36be17f27ac98e3c839b2589db8475fa07b20657b08e8891e3aaf5ee5f9::attributes::Attributes,
-    // }
+    public struct Dlab has store, key {
+        id: UID,
+        name: String,
+        description: String,
+        url: Url,
+        attributes: Attributes,
+    }
     
     // public fun burn_nft(arg0: &0xbc3df36be17f27ac98e3c839b2589db8475fa07b20657b08e8891e3aaf5ee5f9::collection::Collection<Dlab>, arg1: Dlab) {
     //     let v0 = Witness{dummy_field: false};
@@ -89,19 +112,27 @@ module  dlab::dlab {
     //     0x2::transfer::public_share_object<0xe2c7a6843cb13d9549a9d2dc1c266b572ead0b4b9f090e7c3c46de2714102b43::request::Policy<0xe2c7a6843cb13d9549a9d2dc1c266b572ead0b4b9f090e7c3c46de2714102b43::request::WithNft<Dlab, 0xe2c7a6843cb13d9549a9d2dc1c266b572ead0b4b9f090e7c3c46de2714102b43::withdraw_request::WITHDRAW_REQ>>>(v15);
     // }
     
-    // fun mint(arg0: 0x1::string::String, arg1: 0x1::string::String, arg2: vector<u8>, arg3: vector<0x1::ascii::String>, arg4: vector<0x1::ascii::String>, arg5: &mut 0xbc3df36be17f27ac98e3c839b2589db8475fa07b20657b08e8891e3aaf5ee5f9::mint_cap::MintCap<Dlab>, arg6: &mut 0x2::tx_context::TxContext) : Dlab {
-    //     let v0 = Witness{dummy_field: false};
-    //     let v1 = Dlab{
-    //         id          : 0x2::object::new(arg6), 
-    //         name        : arg0, 
-    //         description : arg1, 
-    //         url         : 0x2::url::new_unsafe_from_bytes(arg2), 
-    //         attributes  : 0xbc3df36be17f27ac98e3c839b2589db8475fa07b20657b08e8891e3aaf5ee5f9::attributes::from_vec(arg3, arg4),
-    //     };
-    //     0xbc3df36be17f27ac98e3c839b2589db8475fa07b20657b08e8891e3aaf5ee5f9::mint_event::emit_mint<Dlab>(0x16c5f17f2d55584a6e6daa442ccf83b4530d10546a8e7dedda9ba324e012fc40::witness::from_witness<Dlab, Witness>(v0), 0xbc3df36be17f27ac98e3c839b2589db8475fa07b20657b08e8891e3aaf5ee5f9::mint_cap::collection_id<Dlab>(arg5), &v1);
-    //     0xbc3df36be17f27ac98e3c839b2589db8475fa07b20657b08e8891e3aaf5ee5f9::mint_cap::increment_supply<Dlab>(arg5, 1);
-    //     v1
-    // }
+    fun mint(
+        arg0: 0x1::string::String, 
+        arg1: 0x1::string::String, 
+        arg2: vector<u8>, 
+        arg3: vector<0x1::ascii::String>, 
+        arg4: vector<0x1::ascii::String>, 
+        arg5: &mut MintCap<Dlab>, 
+        arg6: &mut TxContext
+    ) : Dlab {
+        let v0 = Witness{dummy_field: false};
+        let v1 = Dlab{
+            id          : object::new(arg6), 
+            name        : arg0, 
+            description : arg1, 
+            url         : url::new_unsafe_from_bytes(arg2), 
+            attributes  : attributes::from_vec(arg3, arg4),
+        };
+        mint_event::emit_mint<Dlab>(witness::from_witness<Dlab, Witness>(v0), mint_cap::collection_id<Dlab>(arg5), &v1);
+        mint_cap::increment_supply<Dlab>(arg5, 1);
+        v1
+    }
     
     // public entry fun mint_nft_to_kiosk(arg0: 0x1::string::String, arg1: 0x1::string::String, arg2: vector<u8>, arg3: vector<0x1::ascii::String>, arg4: vector<0x1::ascii::String>, arg5: &mut 0xbc3df36be17f27ac98e3c839b2589db8475fa07b20657b08e8891e3aaf5ee5f9::mint_cap::MintCap<Dlab>, arg6: &mut 0x2::kiosk::Kiosk, arg7: &mut 0x2::tx_context::TxContext) {
     //     0x95a441d389b07437d00dd07e0b6f05f513d7659b13fd7c5d3923c7d9d847199b::ob_kiosk::deposit<Dlab>(arg6, mint(arg0, arg1, arg2, arg3, arg4, arg5, arg7), arg7);
@@ -114,19 +145,17 @@ module  dlab::dlab {
     //     0x2::transfer::public_share_object<0x2::kiosk::Kiosk>(v2);
     // }
     
-    // public entry fun mint_nft_to_warehouse(
-    //     arg0: 0x1::string::String, 
-    //     arg1: 0x1::string::String, 
-    //     arg2: vector<u8>, 
-    //     arg3: vector<0x1::ascii::String>, 
-    //     arg4: vector<0x1::ascii::String>, 
-    //     arg5: &mut 0xbc3df36be17f27ac98e3c839b2589db8475fa07b20657b08e8891e3aaf5ee5f9::mint_cap::MintCap<Dlab>, 
-    //     arg6: &mut 0xc74531639fadfb02d30f05f37de4cf1e1149ed8d23658edd089004830068180b::warehouse::Warehouse<Dlab>, 
-    //     arg7: &mut 0x2::tx_context::TxContext
-    // ) {
-    //     0xc74531639fadfb02d30f05f37de4cf1e1149ed8d23658edd089004830068180b::warehouse::deposit_nft<Dlab>(arg6, mint(arg0, arg1, arg2, arg3, arg4, arg5, arg7));
-    // }
-    
-    // decompiled from Move bytecode v6
+    public entry fun mint_nft_to_warehouse(
+        arg0: String, 
+        arg1: String, 
+        arg2: vector<u8>, 
+        arg3: vector<ascii::String>, 
+        arg4: vector<ascii::String>, 
+        arg5: &mut MintCap<Dlab>, 
+        arg6: &mut Warehouse<Dlab>, 
+        arg7: &mut TxContext
+    ) {
+        warehouse::deposit_nft<Dlab>(arg6, mint(arg0, arg1, arg2, arg3, arg4, arg5, arg7));
+    }
 }
 
