@@ -1,5 +1,8 @@
-build
+build/
+sui.log*
 node_modules
-vs_code
-.idea
+.env
+.vscode
 .DS_Store
+dsl.json
+.idea
