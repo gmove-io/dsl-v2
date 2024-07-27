@@ -52,6 +52,10 @@
     "id": "0xa8d673af115103f7d149b0efff1dd4987ab8d7352ab8c425d92d84e1b17f79c6"
   },
   {
+    "type": "request::PolicyCap",
+    "id": "0xac910a839c636b6849c947996011b1697b7e83676ee55146d6b67d58a211050f"
+  },
+  {
     "type": "package::UpgradeCap",
     "id": "0xd140bbd371d5d4b8e8a0c82b53ea9a5ac9a0e0b41de36390f77c80eaf4aaa8d8"
   },

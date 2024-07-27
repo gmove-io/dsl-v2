@@ -13,7 +13,6 @@ module desuilabs::dlab {
         vec_set,
         package,
         sui::SUI,
-        coin::Coin,
         kiosk::Kiosk,
         url::{Self, Url},
     };
@@ -43,15 +42,6 @@ module desuilabs::dlab {
     use ob_permissions::witness;
     use ob_utils::display as ob_display;
     use liquidity_layer_v1::orderbook;
-
-    // === Constants ===
-    
-    // @dev 6 decimals, so the fee is 10_000
-    const UPGRADE_FEE: u64 = 10_000_000_000;
-
-    // === Errors ===
-
-    const ENotEnoughFluid: u64 = 0;
 
     // === Structs ===
 
@@ -411,6 +401,63 @@ module desuilabs::dlab {
                 collection: object::id(collection).id_to_address(), 
                 nft: object::id(nft).id_to_address() 
             }
+        );
+    }
+
+    #[test_only]
+    public fun init_for_testing(ctx: &mut TxContext) {
+        init(DLAB {}, ctx);
+    }
+
+    // kiosk owned objects (dof) aren't returned in test tx effects
+    #[test_only]
+    public fun mint_for_testing(
+        name: String,
+        description: String,
+        url: vector<u8>,
+        attributes_keys: vector<ascii::String>,
+        attributes_values: vector<ascii::String>,
+        mint_cap: &mut MintCap<Dlab>,
+        ctx: &mut TxContext,
+    ): Dlab {
+        let delegated_witness = witness::from_witness(Witness {});
+
+        let nft = Dlab {
+            id: object::new(ctx),
+            name,
+            description,
+            url: url::new_unsafe_from_bytes(url),
+            attributes: attributes::from_vec(attributes_keys, attributes_values),
+        };
+
+        mint_event::emit_mint(
+            delegated_witness,
+            mint_cap.collection_id(),
+            &nft,
+        );
+
+        mint_cap.increment_supply(1);
+
+        nft
+    }
+
+    #[test_only]
+    public fun assert_nft_data(
+        nft: &Dlab,
+        name: String,
+        description: String,
+        url: ascii::String,
+        attributes_keys: vector<ascii::String>,
+        attributes_values: vector<ascii::String>,
+    ) {
+        let attr = *nft.attributes.get_attributes();
+        let (keys, values) = attr.into_keys_values();
+        assert!(
+            nft.name == name &&
+            nft.description == description &&
+            nft.url.inner_url() == url &&
+            keys == attributes_keys &&
+            values == attributes_values
         );
     }
 }
