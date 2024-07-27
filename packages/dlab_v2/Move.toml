@@ -1,0 +1,34 @@
+[package]
+name = "desuilabs"
+edition = "2024.beta" 
+# published-at = "0xf880fbe6055acfd674fe3713c26159e6a330c017ebb8566c9b01a5b4b7b7b602"
+published-at = "0x7ff57beccfa2c8664643da447f82a55a84735b356eea28180ff794567211b030"
+
+[dependencies]
+# Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "framework/mainnet", override = true }
+# NftProtocol = { git = "https://github.com/Origin-Byte/nft-protocol.git", subdir = "contracts/nft_protocol", rev = "main" }
+# Launchpad = { git = "https://github.com/Origin-Byte/nft-protocol.git", subdir = "contracts/launchpad", rev = "main" }
+# Permissions = { git = "https://github.com/Origin-Byte/nft-protocol.git", subdir = "contracts/permissions", rev = "main" }
+# LiquidityLayerV1 = { git = "https://github.com/Origin-Byte/nft-protocol.git", subdir = "contracts/liquidity_layer_v1", rev = "main" }
+# Utils = { git = "https://github.com/Origin-Byte/nft-protocol.git", subdir = "contracts/utils", rev = "main" }
+# Request = { git = "https://github.com/Origin-Byte/nft-protocol.git", subdir = "contracts/request", rev = "main" }
+# Kiosk = { git = "https://github.com/Origin-Byte/nft-protocol.git", subdir = "contracts/kiosk", rev = "main" }
+
+Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "framework/testnet", override = true }
+NftProtocol = { git = "https://github.com/Origin-Byte/nft-protocol.git", subdir = "contracts/nft_protocol", rev = "testnet" }
+Launchpad = { git = "https://github.com/Origin-Byte/nft-protocol.git", subdir = "contracts/launchpad", rev = "testnet" }
+Permissions = { git = "https://github.com/Origin-Byte/nft-protocol.git", subdir = "contracts/permissions", rev = "testnet" }
+LiquidityLayerV1 = { git = "https://github.com/Origin-Byte/nft-protocol.git", subdir = "contracts/liquidity_layer_v1", rev = "testnet" }
+Utils = { git = "https://github.com/Origin-Byte/nft-protocol.git", subdir = "contracts/utils", rev = "testnet" }
+Request = { git = "https://github.com/Origin-Byte/nft-protocol.git", subdir = "contracts/request", rev = "testnet" }
+Kiosk = { git = "https://github.com/Origin-Byte/nft-protocol.git", subdir = "contracts/kiosk", rev = "testnet" }
+
+[addresses]
+desuilabs = "0x7ff57beccfa2c8664643da447f82a55a84735b356eea28180ff794567211b030"
+# nft_protocol = "0xbc3df36be17f27ac98e3c839b2589db8475fa07b20657b08e8891e3aaf5ee5f9"
+# ob_launchpad = "0xc74531639fadfb02d30f05f37de4cf1e1149ed8d23658edd089004830068180b"
+# ob_permissions = "0x16c5f17f2d55584a6e6daa442ccf83b4530d10546a8e7dedda9ba324e012fc40"
+# liquidity_layer_v1 = "0x4e0629fa51a62b0c1d7c7b9fc89237ec5b6f630d7798ad3f06d820afb93a995a"
+# ob_utils = "0x859eb18bd5b5e8cc32deb6dfb1c39941008ab3c6e27f0b8ce2364be7102bb7cb"
+# ob_request = "0xe2c7a6843cb13d9549a9d2dc1c266b572ead0b4b9f090e7c3c46de2714102b43"
+# ob_kiosk = "0x95a441d389b07437d00dd07e0b6f05f513d7659b13fd7c5d3923c7d9d847199b"

@@ -1,0 +1,45 @@
+{
+  "packageName": "DeSuiLabs",
+  "collection": {
+    "name": "DeSuiLabs",
+    "description": "2222 Degenerates running experiments on the Blockchain.",
+    "symbol": "DLAB",
+    "tags": ["PFP", "Utility", "Gaming"],
+    "royalties": {
+      "proportional": {
+        "shares": [
+          {
+            "address": "0x61028a4c388514000a7de787c3f7b8ec1eb88d1bd2dbc0d3dfab37078e39630f",
+            "shareBps": 1000
+          },
+          {
+            "address": "0xa6e6f36c9eab8e8bc2e4a82e225f25da703a55a2cbd4d3eefbd11b41e8888a24",
+            "shareBps": 9000
+          }
+        ],
+        "collectionRoyaltyBps": 1000
+      }
+    },
+    "creators": [
+      "0x61028a4c388514000a7de787c3f7b8ec1eb88d1bd2dbc0d3dfab37078e39630f"
+    ],
+    "supply": "untracked"
+  },
+  "nft": {
+    "typeName": "Dlab",
+    "mintCap": 2222,
+    "mintPolicies": {
+      "launchpad": true,
+      "airdrop": true
+    },
+    "orderbook": "protected",
+    "burn": "permissionless",
+    "dynamic": false,
+    "fields": [
+      ["name", "String"],
+      ["description", "String"],
+      ["url", "Url"],
+      ["attributes", "Attributes"]
+    ]
+  }
+}

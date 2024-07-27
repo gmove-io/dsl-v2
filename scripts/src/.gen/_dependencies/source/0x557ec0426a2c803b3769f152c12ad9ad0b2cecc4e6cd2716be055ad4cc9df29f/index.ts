@@ -1,0 +1,1 @@
+export const PACKAGE_ID = "0x557ec0426a2c803b3769f152c12ad9ad0b2cecc4e6cd2716be055ad4cc9df29f"; export const PUBLISHED_AT = "0x1487caf84ffaccadd3041bdf0e2c11a1f3a547010f1e0ac870f5727dca5b05a8"; export const PKG_V1 = "0x557ec0426a2c803b3769f152c12ad9ad0b2cecc4e6cd2716be055ad4cc9df29f";

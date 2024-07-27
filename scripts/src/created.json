@@ -1,0 +1,78 @@
+[
+  {
+    "type": "dynamic_field::Field<0x2::transfer_policy::RuleKey<0x01735f24294e55a988541e97db050903cf8a70ce38c77ad219c134344eda67ac::royalty_strategy_bps::BpsRoyaltyStrategyRule>, bool>",
+    "id": "0x019ac76cbbcea4b20f5abc663def37bc6449e2c16591f3f068b3282efae6f869"
+  },
+  {
+    "type": "display::Display<0xf880fbe6055acfd674fe3713c26159e6a330c017ebb8566c9b01a5b4b7b7b602::dlab::Dlab>",
+    "id": "0x2451c8c8fb262f76fe4a4dbbbd9818f1f314e81089153eeeda91dbf93434a7c4"
+  },
+  {
+    "type": "transfer_policy::TransferPolicy<0xf880fbe6055acfd674fe3713c26159e6a330c017ebb8566c9b01a5b4b7b7b602::dlab::Dlab>",
+    "id": "0x3d18744923d68b3aabe0327515afce3b71a8bdaf4eb2a653cbdefc67cb414ba1"
+  },
+  {
+    "type": "dynamic_field::Field<0xcdbd730f422a89174ee4717e97a3db1c48b008f969eec00846a0d685b2437f8a::utils::Marker<0x01735f24294e55a988541e97db050903cf8a70ce38c77ad219c134344eda67ac::royalty::RoyaltyDomain>, 0x01735f24294e55a988541e97db050903cf8a70ce38c77ad219c134344eda67ac::royalty::RoyaltyDomain>",
+    "id": "0x453d2739afc98b09b928ea9f5cd94d03df018a5508f19d722aaafdd65e535f71"
+  },
+  {
+    "type": "dynamic_field::Field<0x2::transfer_policy::RuleKey<0x01735f24294e55a988541e97db050903cf8a70ce38c77ad219c134344eda67ac::transfer_allowlist::AllowlistRule>, bool>",
+    "id": "0x4985bfb404b7fd2def99c2e758adb8451639adbedb79090fa658e60fdb4d6668"
+  },
+  {
+    "type": "collection::Collection<0xf880fbe6055acfd674fe3713c26159e6a330c017ebb8566c9b01a5b4b7b7b602::dlab::Dlab>",
+    "id": "0x5da1cf07e3da28df5948def0acceddff44f4430265360010ea66d1cc57e1c84e"
+  },
+  {
+    "type": "mint_cap::MintCap<0xf880fbe6055acfd674fe3713c26159e6a330c017ebb8566c9b01a5b4b7b7b602::dlab::Dlab>",
+    "id": "0x60875ecf9d40af81efb0194c7131eee0521205cf272a8279e073647f01ee63d3"
+  },
+  {
+    "type": "dynamic_field::Field<0xcdbd730f422a89174ee4717e97a3db1c48b008f969eec00846a0d685b2437f8a::utils::Marker<0x01735f24294e55a988541e97db050903cf8a70ce38c77ad219c134344eda67ac::creators::Creators>, 0x01735f24294e55a988541e97db050903cf8a70ce38c77ad219c134344eda67ac::creators::Creators>",
+    "id": "0x7c2b64c7ba4378577b8efacb1ba56c6f88a6016d444582f1c42f352694a9bac0"
+  },
+  {
+    "type": "orderbook::Orderbook<0xf880fbe6055acfd674fe3713c26159e6a330c017ebb8566c9b01a5b4b7b7b602::dlab::Dlab, 0x2::sui::SUI>",
+    "id": "0xa64f45713fb5b62c38469da7d117f69ea1bba4494d5e3d763b216945dd72e3b1"
+  },
+  {
+    "type": "dynamic_field::Field<0xcdbd730f422a89174ee4717e97a3db1c48b008f969eec00846a0d685b2437f8a::utils::Marker<0x01735f24294e55a988541e97db050903cf8a70ce38c77ad219c134344eda67ac::symbol::Symbol>, 0x01735f24294e55a988541e97db050903cf8a70ce38c77ad219c134344eda67ac::symbol::Symbol>",
+    "id": "0xa7ce2c03f20a45ba57f78751fbe4b1399f31d4602bc68183645e91c24aaa2de0"
+  },
+  {
+    "type": "package::Publisher",
+    "id": "0xa835ad4a1aa017c5c5341d4a4f2cc5b0ad63e2711f00047423d3f390c6ecd613"
+  },
+  {
+    "type": "dynamic_field::Field<0xcdbd730f422a89174ee4717e97a3db1c48b008f969eec00846a0d685b2437f8a::utils::Marker<0x01735f24294e55a988541e97db050903cf8a70ce38c77ad219c134344eda67ac::display_info::DisplayInfo>, 0x01735f24294e55a988541e97db050903cf8a70ce38c77ad219c134344eda67ac::display_info::DisplayInfo>",
+    "id": "0xa841fe38eb79d13a89c3ba1093a9cefa87d8befd9265ef74723fec61dd86fc3a"
+  },
+  {
+    "type": "dynamic_field::Field<0xaf6ff929224de84ca0372eceef9a1c891bae68d03427bfcf5e99458a2c1498a1::transfer_request::OBCustomRulesDfKey, u8>",
+    "id": "0xa8d673af115103f7d149b0efff1dd4987ab8d7352ab8c425d92d84e1b17f79c6"
+  },
+  {
+    "type": "package::UpgradeCap",
+    "id": "0xd140bbd371d5d4b8e8a0c82b53ea9a5ac9a0e0b41de36390f77c80eaf4aaa8d8"
+  },
+  {
+    "type": "royalty_strategy_bps::BpsRoyaltyStrategy<0xf880fbe6055acfd674fe3713c26159e6a330c017ebb8566c9b01a5b4b7b7b602::dlab::Dlab>",
+    "id": "0xeb5a067c0c6d894834e040332e6fbc77dc9c37dc56fba550c1ba0e6ed6891dc2"
+  },
+  {
+    "type": "transfer_policy::TransferPolicyCap<0xf880fbe6055acfd674fe3713c26159e6a330c017ebb8566c9b01a5b4b7b7b602::dlab::Dlab>",
+    "id": "0xf107c58a4ab1bf5885ae0336e9308f832e839ef2791e443e87d73ecf2ae10ec2"
+  },
+  {
+    "type": "request::Policy<0xaf6ff929224de84ca0372eceef9a1c891bae68d03427bfcf5e99458a2c1498a1::request::WithNft<0xf880fbe6055acfd674fe3713c26159e6a330c017ebb8566c9b01a5b4b7b7b602::dlab::Dlab, 0xaf6ff929224de84ca0372eceef9a1c891bae68d03427bfcf5e99458a2c1498a1::withdraw_request::WITHDRAW_REQ>>",
+    "id": "0xf6dcf053a0b8e815a41d4815f03161939affdbbed23062c01c359a8f3df6b6b7"
+  },
+  {
+    "type": "package_id",
+    "id": "0xf880fbe6055acfd674fe3713c26159e6a330c017ebb8566c9b01a5b4b7b7b602"
+  },
+  {
+    "type": "dynamic_field::Field<0xaf6ff929224de84ca0372eceef9a1c891bae68d03427bfcf5e99458a2c1498a1::request::RuleStateDfKey<0xf880fbe6055acfd674fe3713c26159e6a330c017ebb8566c9b01a5b4b7b7b602::dlab::Witness>, bool>",
+    "id": "0xfdff440d9b5b71bdabf180e7a08bf46e4d2e5f9c2b5aaf204f3566b67b74fa9c"
+  }
+]
