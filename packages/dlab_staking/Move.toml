@@ -5,8 +5,8 @@ edition = "2024.beta" # edition = "legacy" to use legacy (pre-2024) Move
 # authors = ["..."]      # e.g., ["Joe Smith (joesmith@noemail.com)", "John Snow (johnsnow@noemail.com)"]
 
 [dependencies]
-Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "framework/mainnet" }
-dlab = { local = "../dlab_v2" }
+Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "framework/testnet" }
+desuilabs = { local = "../dlab_v2" }
 
 # For remote import, use the `{ git = "...", subdir = "...", rev = "..." }`.
 # Revision can be a branch, a tag, and a commit hash.
@@ -21,7 +21,7 @@ dlab = { local = "../dlab_v2" }
 
 [addresses]
 dsl_staking = "0x0"
-dlab = "0x0"
+desuilabs = "0x7ff57beccfa2c8664643da447f82a55a84735b356eea28180ff794567211b030"
 sui = "0x2"
 
 # Named addresses will be accessible in Move as `@name`. They're also exported:

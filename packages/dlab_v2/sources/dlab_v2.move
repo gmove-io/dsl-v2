@@ -15,6 +15,7 @@ module desuilabs::dlab {
         sui::SUI,
         kiosk::Kiosk,
         url::{Self, Url},
+        package::Publisher
     };
     use nft_protocol::{
         symbol,
@@ -30,9 +31,10 @@ module desuilabs::dlab {
     };
     use ob_request::{
         request,
+        borrow_request::{Self, BORROW_REQ},
         transfer_request,
         request::{WithNft, Policy},
-        withdraw_request::{Self, WITHDRAW_REQ}
+        withdraw_request::{Self, WITHDRAW_REQ},
     };
     use ob_launchpad::{
         listing::Listing,
@@ -60,7 +62,6 @@ module desuilabs::dlab {
     // === Events ===
 
     public struct Upgrade has store, copy, drop {
-        collection: address,
         nft: address
     }
 
@@ -350,18 +351,17 @@ module desuilabs::dlab {
     // === V2 Upgrade === 
 
     public fun upgrade_nft(
-        collection: &Collection<Dlab>,
         nft: &mut Dlab,
         url: ascii::String,
     ) {       
 
         nft.upgrade_to_v2(url);
 
-        emit_upgrade(collection, nft);
+        emit_upgrade(nft);
     }
 
+    // user upgrade his nft
     public entry fun upgrade_nft_in_kiosk(
-        collection: &Collection<Dlab>,
         policy: &Policy<WithNft<Dlab, WITHDRAW_REQ>>,
         kiosk: &mut Kiosk,
         nft_id: ID,
@@ -380,9 +380,49 @@ module desuilabs::dlab {
 
         nft.upgrade_to_v2(url);
 
-        emit_upgrade(collection, &nft);
+        emit_upgrade(&nft);
 
         ob_kiosk::deposit(kiosk, nft, ctx);
+    }
+
+    // admin upgrade nfts
+    public entry fun create_borrow_policy(publisher: &Publisher, ctx: &mut TxContext) {
+        let (mut borrow_policy, borrow_policy_cap) = borrow_request::init_policy<Dlab>(
+            publisher, 
+            ctx
+        );
+
+        request::enforce_rule_no_state<WithNft<Dlab, BORROW_REQ>, Witness>(
+            &mut borrow_policy, 
+            &borrow_policy_cap
+        );
+
+        // TODO: send cap to right address
+        transfer::public_transfer(borrow_policy_cap, ctx.sender());
+        transfer::public_share_object(borrow_policy);
+    }
+
+    public entry fun air_upgrade_nft(
+        policy: &Policy<WithNft<Dlab, BORROW_REQ>>,
+        kiosk: &mut Kiosk,
+        nft_id: ID,
+        url: ascii::String,
+        ctx: &mut TxContext,
+    ) {
+        let mut request = ob_kiosk::borrow_nft_mut<Dlab>(
+            kiosk, 
+            nft_id,
+            option::none(), 
+            ctx
+        );
+        let witness = witness::from_witness<Dlab, Witness>(Witness {});
+        borrow_request::add_receipt(&mut request, &Witness {});
+        let nft_mut = borrow_request::borrow_nft_ref_mut(witness, &mut request);
+
+        nft_mut.upgrade_to_v2(url);
+        emit_upgrade(nft_mut);
+
+        ob_kiosk::return_nft<Witness, Dlab>(kiosk, request, policy);
     }
 
     // === Utils ===
@@ -393,12 +433,10 @@ module desuilabs::dlab {
     }
 
     fun emit_upgrade(
-        collection: &Collection<Dlab>,
         nft: &Dlab
     ) {
         event::emit(
             Upgrade { 
-                collection: object::id(collection).id_to_address(), 
                 nft: object::id(nft).id_to_address() 
             }
         );
