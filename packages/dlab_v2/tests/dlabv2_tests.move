@@ -2,6 +2,7 @@
 #[test_only]
 module desuilabs::dlab_tests {
 
+    use std::debug::print;
     use sui::{
         test_utils::destroy,
         clock::{Self, Clock},
@@ -80,7 +81,7 @@ module desuilabs::dlab_tests {
             b"DeSuiLab".to_string(),
             b"Original".to_string(),
             b"pixel art",
-            vector[b"face".to_ascii_string()],
+            vector[b"1 face".to_ascii_string()],
             vector[b"red".to_ascii_string()],
             &mut world.mint_cap,
             world.scenario.ctx()
@@ -92,7 +93,7 @@ module desuilabs::dlab_tests {
             b"DeSuiLab".to_string(),
             b"Original".to_string(),
             b"pixel art".to_ascii_string(),
-            vector[b"face".to_ascii_string()],
+            vector[b"1 face".to_ascii_string()],
             vector[b"red".to_ascii_string()],
         );
 
@@ -114,8 +115,8 @@ module desuilabs::dlab_tests {
             b"DeSuiLab".to_string(),
             b"Original".to_string(),
             b"next gen art".to_ascii_string(),
-            vector[b"face".to_ascii_string(), b"version".to_ascii_string()],
-            vector[b"red".to_ascii_string(), b"2".to_ascii_string()],
+            vector[b"face".to_ascii_string(), b"Type".to_ascii_string()],
+            vector[b"red".to_ascii_string(), b"Upgraded".to_ascii_string()],
         );
 
         destroy(req);
@@ -133,8 +134,8 @@ module desuilabs::dlab_tests {
             b"DeSuiLab".to_string(),
             b"Original".to_string(),
             b"pixel art",
-            vector[b"face".to_ascii_string()],
-            vector[b"red".to_ascii_string()],
+            vector[b"1 face".to_ascii_string()],
+            vector[b"red_mf".to_ascii_string()],
             &mut world.mint_cap,
             world.scenario.ctx()
         );
@@ -145,8 +146,8 @@ module desuilabs::dlab_tests {
             b"DeSuiLab".to_string(),
             b"Original".to_string(),
             b"pixel art".to_ascii_string(),
-            vector[b"face".to_ascii_string()],
-            vector[b"red".to_ascii_string()],
+            vector[b"1 face".to_ascii_string()],
+            vector[b"red_mf".to_ascii_string()],
         );
 
         world.scenario.next_tx(OWNER); 
@@ -167,8 +168,8 @@ module desuilabs::dlab_tests {
             b"DeSuiLab".to_string(),
             b"Original".to_string(),
             b"next gen art".to_ascii_string(),
-            vector[b"face".to_ascii_string(), b"version".to_ascii_string()],
-            vector[b"red".to_ascii_string(), b"2".to_ascii_string()],
+            vector[b"face".to_ascii_string(), b"Type".to_ascii_string()],
+            vector[b"red'mf".to_ascii_string(), b"Upgraded".to_ascii_string()],
         );
 
         destroy(req);

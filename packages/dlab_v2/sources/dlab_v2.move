@@ -429,7 +429,38 @@ module desuilabs::dlab {
 
     fun upgrade_to_v2(nft: &mut Dlab, url: ascii::String) {
         nft.url = url::new_unsafe(url); // ipfs://bafybeictvrpb2vdek7i3gmfihnwrl4j6egoht6em36slnbghq7jqdl7ul4/415.png
-        nft.attributes.insert_attribute<Witness, Dlab>(ascii::string(b"version"), ascii::string(b"2"));
+        
+        let attributes_mut = nft.attributes.get_attributes_mut();
+        let mut new_keys = vector[];
+        let mut new_values = vector[];
+
+        new_keys.push_back(ascii::string(b"Type"));
+        new_values.push_back(ascii::string(b"Upgraded"));
+
+        while (!attributes_mut.is_empty()) {
+            let (key, mut value) = attributes_mut.pop();
+
+            // check value and replace _ by '
+            let mut reversed = b"".to_ascii_string();
+            let mut new_value = b"".to_ascii_string();
+            while (!value.is_empty()) { // reverse string
+                reversed.push_char(value.pop_char());
+            };
+            while (!reversed.is_empty()) {
+                let popped = reversed.pop_char();
+                let char = if (popped == ascii::char(b"_".pop_back())) {
+                    ascii::char(b"'".pop_back())
+                } else {
+                    popped
+                };
+                new_value.push_char(char);
+            };
+
+            new_keys.push_back(key.substring(2, key.length())); // remove number prefix
+            new_values.push_back(new_value);
+        };
+
+        nft.attributes = attributes::from_vec(new_keys, new_values);
     }
 
     fun emit_upgrade(
