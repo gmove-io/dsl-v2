@@ -2,7 +2,9 @@
 name = "desuilabs"
 edition = "2024.beta" 
 # published-at = "0xf880fbe6055acfd674fe3713c26159e6a330c017ebb8566c9b01a5b4b7b7b602"
-published-at = "0x7ff57beccfa2c8664643da447f82a55a84735b356eea28180ff794567211b030"
+# published-at = "0x7ff57beccfa2c8664643da447f82a55a84735b356eea28180ff794567211b030"
+# published-at = "0x1abc7dd23ca95e3780c84825e57ba06a06816d74860d01dbedef6411c2fbb57d"
+published-at = "0x09a422886ab18c9fbaab4345fd57707bf79b65a18ab251213c5fff614bd628ef"
 
 [dependencies]
 # Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "framework/mainnet", override = true }
@@ -24,7 +26,7 @@ Request = { git = "https://github.com/Origin-Byte/nft-protocol.git", subdir = "c
 Kiosk = { git = "https://github.com/Origin-Byte/nft-protocol.git", subdir = "contracts/kiosk", rev = "testnet" }
 
 [addresses]
-desuilabs = "0x7ff57beccfa2c8664643da447f82a55a84735b356eea28180ff794567211b030"
+desuilabs = "0x09a422886ab18c9fbaab4345fd57707bf79b65a18ab251213c5fff614bd628ef"
 # nft_protocol = "0xbc3df36be17f27ac98e3c839b2589db8475fa07b20657b08e8891e3aaf5ee5f9"
 # ob_launchpad = "0xc74531639fadfb02d30f05f37de4cf1e1149ed8d23658edd089004830068180b"
 # ob_permissions = "0x16c5f17f2d55584a6e6daa442ccf83b4530d10546a8e7dedda9ba324e012fc40"

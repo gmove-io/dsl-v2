@@ -8,9 +8,9 @@ import {StructClassLoader} from "../../../_framework/loader";
 export function registerClasses(loader: StructClassLoader) { loader.register(utils.IsShared);
 loader.register(utils.Marker);
 loader.register(utilsSupply.Supply);
+loader.register(dynamicVector.DynVec);
 loader.register(critBit.CritbitTree);
 loader.register(critBit.InternalNode);
 loader.register(critBit.Leaf);
-loader.register(dynamicVector.DynVec);
 loader.register(sizedVec.SizedVec);
  }

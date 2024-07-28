@@ -18,10 +18,10 @@ export function registerClasses(loader: StructClassLoader) { loader.register(i12
 loader.register(i64Type.I64);
 loader.register(balances.Balances);
 loader.register(typedId.TypedID);
-loader.register(objectBox.ObjectBox);
 loader.register(critBitU64.CB);
 loader.register(critBitU64.I);
 loader.register(critBitU64.O);
+loader.register(objectBox.ObjectBox);
 loader.register(bloomFilter.Filter);
 loader.register(box.Box);
 loader.register(critBit.CB);

@@ -76,71 +76,6 @@ export class Witness implements StructClass { static readonly $typeName = `${PKG
 
  }
 
-/* ============================== Bid =============================== */
-
-export function isBid(type: string): boolean { type = compressSuiType(type); return type.startsWith(`${PKG_V1}::orderbook::Bid` + '<'); }
-
-export interface BidFields<FT extends PhantomTypeArgument> { offer: ToField<Balance<FT>>; owner: ToField<"address">; kiosk: ToField<ID>; commission: ToField<Option<BidCommission<FT>>> }
-
-export type BidReified<FT extends PhantomTypeArgument> = Reified< Bid<FT>, BidFields<FT> >;
-
-export class Bid<FT extends PhantomTypeArgument> implements StructClass { static readonly $typeName = `${PKG_V1}::orderbook::Bid`; static readonly $numTypeParams = 1;
-
- readonly $typeName = Bid.$typeName;
-
- readonly $fullTypeName: `${typeof PKG_V1}::orderbook::Bid<${PhantomToTypeStr<FT>}>`;
-
- readonly $typeArgs: [PhantomToTypeStr<FT>];
-
- readonly offer: ToField<Balance<FT>>; readonly owner: ToField<"address">; readonly kiosk: ToField<ID>; readonly commission: ToField<Option<BidCommission<FT>>>
-
- private constructor(typeArgs: [PhantomToTypeStr<FT>], fields: BidFields<FT>, ) { this.$fullTypeName = composeSuiType( Bid.$typeName, ...typeArgs ) as `${typeof PKG_V1}::orderbook::Bid<${PhantomToTypeStr<FT>}>`; this.$typeArgs = typeArgs;
-
- this.offer = fields.offer;; this.owner = fields.owner;; this.kiosk = fields.kiosk;; this.commission = fields.commission; }
-
- static reified<FT extends PhantomReified<PhantomTypeArgument>>( FT: FT ): BidReified<ToPhantomTypeArgument<FT>> { return { typeName: Bid.$typeName, fullTypeName: composeSuiType( Bid.$typeName, ...[extractType(FT)] ) as `${typeof PKG_V1}::orderbook::Bid<${PhantomToTypeStr<ToPhantomTypeArgument<FT>>}>`, typeArgs: [ extractType(FT) ] as [PhantomToTypeStr<ToPhantomTypeArgument<FT>>], reifiedTypeArgs: [FT], fromFields: (fields: Record<string, any>) => Bid.fromFields( FT, fields, ), fromFieldsWithTypes: (item: FieldsWithTypes) => Bid.fromFieldsWithTypes( FT, item, ), fromBcs: (data: Uint8Array) => Bid.fromBcs( FT, data, ), bcs: Bid.bcs, fromJSONField: (field: any) => Bid.fromJSONField( FT, field, ), fromJSON: (json: Record<string, any>) => Bid.fromJSON( FT, json, ), fromSuiParsedData: (content: SuiParsedData) => Bid.fromSuiParsedData( FT, content, ), fetch: async (client: SuiClient, id: string) => Bid.fetch( client, FT, id, ), new: ( fields: BidFields<ToPhantomTypeArgument<FT>>, ) => { return new Bid( [extractType(FT)], fields ) }, kind: "StructClassReified", } }
-
- static get r() { return Bid.reified }
-
- static phantom<FT extends PhantomReified<PhantomTypeArgument>>( FT: FT ): PhantomReified<ToTypeStr<Bid<ToPhantomTypeArgument<FT>>>> { return phantom(Bid.reified( FT )); } static get p() { return Bid.phantom }
-
- static get bcs() { return bcs.struct("Bid", {
-
- offer: Balance.bcs, owner: bcs.bytes(32).transform({ input: (val: string) => fromHEX(val), output: (val: Uint8Array) => toHEX(val), }), kiosk: ID.bcs, commission: Option.bcs(BidCommission.bcs)
-
-}) };
-
- static fromFields<FT extends PhantomReified<PhantomTypeArgument>>( typeArg: FT, fields: Record<string, any> ): Bid<ToPhantomTypeArgument<FT>> { return Bid.reified( typeArg, ).new( { offer: decodeFromFields(Balance.reified(typeArg), fields.offer), owner: decodeFromFields("address", fields.owner), kiosk: decodeFromFields(ID.reified(), fields.kiosk), commission: decodeFromFields(Option.reified(BidCommission.reified(typeArg)), fields.commission) } ) }
-
- static fromFieldsWithTypes<FT extends PhantomReified<PhantomTypeArgument>>( typeArg: FT, item: FieldsWithTypes ): Bid<ToPhantomTypeArgument<FT>> { if (!isBid(item.type)) { throw new Error("not a Bid type");
-
- } assertFieldsWithTypesArgsMatch(item, [typeArg]);
-
- return Bid.reified( typeArg, ).new( { offer: decodeFromFieldsWithTypes(Balance.reified(typeArg), item.fields.offer), owner: decodeFromFieldsWithTypes("address", item.fields.owner), kiosk: decodeFromFieldsWithTypes(ID.reified(), item.fields.kiosk), commission: decodeFromFieldsWithTypes(Option.reified(BidCommission.reified(typeArg)), item.fields.commission) } ) }
-
- static fromBcs<FT extends PhantomReified<PhantomTypeArgument>>( typeArg: FT, data: Uint8Array ): Bid<ToPhantomTypeArgument<FT>> { return Bid.fromFields( typeArg, Bid.bcs.parse(data) ) }
-
- toJSONField() { return {
-
- offer: this.offer.toJSONField(),owner: this.owner,kiosk: this.kiosk,commission: fieldToJSON<Option<BidCommission<FT>>>(`${Option.$typeName}<${BidCommission.$typeName}<${this.$typeArgs[0]}>>`, this.commission),
-
-} }
-
- toJSON() { return { $typeName: this.$typeName, $typeArgs: this.$typeArgs, ...this.toJSONField() } }
-
- static fromJSONField<FT extends PhantomReified<PhantomTypeArgument>>( typeArg: FT, field: any ): Bid<ToPhantomTypeArgument<FT>> { return Bid.reified( typeArg, ).new( { offer: decodeFromJSONField(Balance.reified(typeArg), field.offer), owner: decodeFromJSONField("address", field.owner), kiosk: decodeFromJSONField(ID.reified(), field.kiosk), commission: decodeFromJSONField(Option.reified(BidCommission.reified(typeArg)), field.commission) } ) }
-
- static fromJSON<FT extends PhantomReified<PhantomTypeArgument>>( typeArg: FT, json: Record<string, any> ): Bid<ToPhantomTypeArgument<FT>> { if (json.$typeName !== Bid.$typeName) { throw new Error("not a WithTwoGenerics json object") }; assertReifiedTypeArgsMatch( composeSuiType(Bid.$typeName, extractType(typeArg)), json.$typeArgs, [typeArg], )
-
- return Bid.fromJSONField( typeArg, json, ) }
-
- static fromSuiParsedData<FT extends PhantomReified<PhantomTypeArgument>>( typeArg: FT, content: SuiParsedData ): Bid<ToPhantomTypeArgument<FT>> { if (content.dataType !== "moveObject") { throw new Error("not an object"); } if (!isBid(content.type)) { throw new Error(`object at ${(content.fields as any).id} is not a Bid object`); } return Bid.fromFieldsWithTypes( typeArg, content ); }
-
- static async fetch<FT extends PhantomReified<PhantomTypeArgument>>( client: SuiClient, typeArg: FT, id: string ): Promise<Bid<ToPhantomTypeArgument<FT>>> { const res = await client.getObject({ id, options: { showBcs: true, }, }); if (res.error) { throw new Error(`error fetching Bid object at id ${id}: ${res.error.code}`); } if (res.data?.bcs?.dataType !== "moveObject" || !isBid(res.data.bcs.type)) { throw new Error(`object at id ${id} is not a Bid object`); }
- return Bid.fromBcs( typeArg, fromB64(res.data.bcs.bcsBytes) ); }
-
- }
-
 /* ============================== AdministratorsDfKey =============================== */
 
 export function isAdministratorsDfKey(type: string): boolean { type = compressSuiType(type); return type === `${PKG_V3}::orderbook::AdministratorsDfKey`; }
@@ -398,6 +333,71 @@ export class AskCreatedEvent implements StructClass { static readonly $typeName 
 
  static async fetch( client: SuiClient, id: string ): Promise<AskCreatedEvent> { const res = await client.getObject({ id, options: { showBcs: true, }, }); if (res.error) { throw new Error(`error fetching AskCreatedEvent object at id ${id}: ${res.error.code}`); } if (res.data?.bcs?.dataType !== "moveObject" || !isAskCreatedEvent(res.data.bcs.type)) { throw new Error(`object at id ${id} is not a AskCreatedEvent object`); }
  return AskCreatedEvent.fromBcs( fromB64(res.data.bcs.bcsBytes) ); }
+
+ }
+
+/* ============================== Bid =============================== */
+
+export function isBid(type: string): boolean { type = compressSuiType(type); return type.startsWith(`${PKG_V1}::orderbook::Bid` + '<'); }
+
+export interface BidFields<FT extends PhantomTypeArgument> { offer: ToField<Balance<FT>>; owner: ToField<"address">; kiosk: ToField<ID>; commission: ToField<Option<BidCommission<FT>>> }
+
+export type BidReified<FT extends PhantomTypeArgument> = Reified< Bid<FT>, BidFields<FT> >;
+
+export class Bid<FT extends PhantomTypeArgument> implements StructClass { static readonly $typeName = `${PKG_V1}::orderbook::Bid`; static readonly $numTypeParams = 1;
+
+ readonly $typeName = Bid.$typeName;
+
+ readonly $fullTypeName: `${typeof PKG_V1}::orderbook::Bid<${PhantomToTypeStr<FT>}>`;
+
+ readonly $typeArgs: [PhantomToTypeStr<FT>];
+
+ readonly offer: ToField<Balance<FT>>; readonly owner: ToField<"address">; readonly kiosk: ToField<ID>; readonly commission: ToField<Option<BidCommission<FT>>>
+
+ private constructor(typeArgs: [PhantomToTypeStr<FT>], fields: BidFields<FT>, ) { this.$fullTypeName = composeSuiType( Bid.$typeName, ...typeArgs ) as `${typeof PKG_V1}::orderbook::Bid<${PhantomToTypeStr<FT>}>`; this.$typeArgs = typeArgs;
+
+ this.offer = fields.offer;; this.owner = fields.owner;; this.kiosk = fields.kiosk;; this.commission = fields.commission; }
+
+ static reified<FT extends PhantomReified<PhantomTypeArgument>>( FT: FT ): BidReified<ToPhantomTypeArgument<FT>> { return { typeName: Bid.$typeName, fullTypeName: composeSuiType( Bid.$typeName, ...[extractType(FT)] ) as `${typeof PKG_V1}::orderbook::Bid<${PhantomToTypeStr<ToPhantomTypeArgument<FT>>}>`, typeArgs: [ extractType(FT) ] as [PhantomToTypeStr<ToPhantomTypeArgument<FT>>], reifiedTypeArgs: [FT], fromFields: (fields: Record<string, any>) => Bid.fromFields( FT, fields, ), fromFieldsWithTypes: (item: FieldsWithTypes) => Bid.fromFieldsWithTypes( FT, item, ), fromBcs: (data: Uint8Array) => Bid.fromBcs( FT, data, ), bcs: Bid.bcs, fromJSONField: (field: any) => Bid.fromJSONField( FT, field, ), fromJSON: (json: Record<string, any>) => Bid.fromJSON( FT, json, ), fromSuiParsedData: (content: SuiParsedData) => Bid.fromSuiParsedData( FT, content, ), fetch: async (client: SuiClient, id: string) => Bid.fetch( client, FT, id, ), new: ( fields: BidFields<ToPhantomTypeArgument<FT>>, ) => { return new Bid( [extractType(FT)], fields ) }, kind: "StructClassReified", } }
+
+ static get r() { return Bid.reified }
+
+ static phantom<FT extends PhantomReified<PhantomTypeArgument>>( FT: FT ): PhantomReified<ToTypeStr<Bid<ToPhantomTypeArgument<FT>>>> { return phantom(Bid.reified( FT )); } static get p() { return Bid.phantom }
+
+ static get bcs() { return bcs.struct("Bid", {
+
+ offer: Balance.bcs, owner: bcs.bytes(32).transform({ input: (val: string) => fromHEX(val), output: (val: Uint8Array) => toHEX(val), }), kiosk: ID.bcs, commission: Option.bcs(BidCommission.bcs)
+
+}) };
+
+ static fromFields<FT extends PhantomReified<PhantomTypeArgument>>( typeArg: FT, fields: Record<string, any> ): Bid<ToPhantomTypeArgument<FT>> { return Bid.reified( typeArg, ).new( { offer: decodeFromFields(Balance.reified(typeArg), fields.offer), owner: decodeFromFields("address", fields.owner), kiosk: decodeFromFields(ID.reified(), fields.kiosk), commission: decodeFromFields(Option.reified(BidCommission.reified(typeArg)), fields.commission) } ) }
+
+ static fromFieldsWithTypes<FT extends PhantomReified<PhantomTypeArgument>>( typeArg: FT, item: FieldsWithTypes ): Bid<ToPhantomTypeArgument<FT>> { if (!isBid(item.type)) { throw new Error("not a Bid type");
+
+ } assertFieldsWithTypesArgsMatch(item, [typeArg]);
+
+ return Bid.reified( typeArg, ).new( { offer: decodeFromFieldsWithTypes(Balance.reified(typeArg), item.fields.offer), owner: decodeFromFieldsWithTypes("address", item.fields.owner), kiosk: decodeFromFieldsWithTypes(ID.reified(), item.fields.kiosk), commission: decodeFromFieldsWithTypes(Option.reified(BidCommission.reified(typeArg)), item.fields.commission) } ) }
+
+ static fromBcs<FT extends PhantomReified<PhantomTypeArgument>>( typeArg: FT, data: Uint8Array ): Bid<ToPhantomTypeArgument<FT>> { return Bid.fromFields( typeArg, Bid.bcs.parse(data) ) }
+
+ toJSONField() { return {
+
+ offer: this.offer.toJSONField(),owner: this.owner,kiosk: this.kiosk,commission: fieldToJSON<Option<BidCommission<FT>>>(`${Option.$typeName}<${BidCommission.$typeName}<${this.$typeArgs[0]}>>`, this.commission),
+
+} }
+
+ toJSON() { return { $typeName: this.$typeName, $typeArgs: this.$typeArgs, ...this.toJSONField() } }
+
+ static fromJSONField<FT extends PhantomReified<PhantomTypeArgument>>( typeArg: FT, field: any ): Bid<ToPhantomTypeArgument<FT>> { return Bid.reified( typeArg, ).new( { offer: decodeFromJSONField(Balance.reified(typeArg), field.offer), owner: decodeFromJSONField("address", field.owner), kiosk: decodeFromJSONField(ID.reified(), field.kiosk), commission: decodeFromJSONField(Option.reified(BidCommission.reified(typeArg)), field.commission) } ) }
+
+ static fromJSON<FT extends PhantomReified<PhantomTypeArgument>>( typeArg: FT, json: Record<string, any> ): Bid<ToPhantomTypeArgument<FT>> { if (json.$typeName !== Bid.$typeName) { throw new Error("not a WithTwoGenerics json object") }; assertReifiedTypeArgsMatch( composeSuiType(Bid.$typeName, extractType(typeArg)), json.$typeArgs, [typeArg], )
+
+ return Bid.fromJSONField( typeArg, json, ) }
+
+ static fromSuiParsedData<FT extends PhantomReified<PhantomTypeArgument>>( typeArg: FT, content: SuiParsedData ): Bid<ToPhantomTypeArgument<FT>> { if (content.dataType !== "moveObject") { throw new Error("not an object"); } if (!isBid(content.type)) { throw new Error(`object at ${(content.fields as any).id} is not a Bid object`); } return Bid.fromFieldsWithTypes( typeArg, content ); }
+
+ static async fetch<FT extends PhantomReified<PhantomTypeArgument>>( client: SuiClient, typeArg: FT, id: string ): Promise<Bid<ToPhantomTypeArgument<FT>>> { const res = await client.getObject({ id, options: { showBcs: true, }, }); if (res.error) { throw new Error(`error fetching Bid object at id ${id}: ${res.error.code}`); } if (res.data?.bcs?.dataType !== "moveObject" || !isBid(res.data.bcs.type)) { throw new Error(`object at id ${id} is not a Bid object`); }
+ return Bid.fromBcs( typeArg, fromB64(res.data.bcs.bcsBytes) ); }
 
  }
 

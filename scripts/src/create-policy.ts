@@ -1,6 +1,6 @@
 import { Transaction } from '@mysten/sui/transactions';
 import { client, keypair, getId } from './utils.js';
-import * as dlab from "./.gen/desuilabs1/dlab/functions.js";
+import * as dlab from "./.gen/desuilabs2/dlab/functions.js";
 
 (async () => {
 	try {
@@ -9,15 +9,10 @@ import * as dlab from "./.gen/desuilabs1/dlab/functions.js";
 		const tx = new Transaction();
 		tx.setGasBudget(100000000);
 
-		dlab.mintNftToNewKiosk(tx, {
-			name: "Test NFT",
-			description: "Test NFT",
-			url: Array.from("ipfs://bafybeictvrpb2vdek7i3gmfihnwrl4j6egoht6em36slnbghq7jqdl7ul4/415.png").map(char => char.charCodeAt(0)),
-			attributesKeys: ["1 hair", "2 eyes"],
-			attributesValues: ["bald", "none_bro"],
-			mintCap: getId("mint_cap::MintCap"),
-			receiver: keypair.toSuiAddress()
-		});
+		dlab.createBorrowPolicy(
+			tx, 
+			getId("package::Publisher"),
+		);
 
 		const result = await client.signAndExecuteTransaction({
 			signer: keypair,

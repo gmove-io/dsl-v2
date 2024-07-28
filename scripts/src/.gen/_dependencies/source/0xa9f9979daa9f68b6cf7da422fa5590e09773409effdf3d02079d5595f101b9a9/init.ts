@@ -9,11 +9,11 @@ export function registerClasses(loader: StructClassLoader) { loader.register(tra
 loader.register(trading.BidCommission);
 loader.register(liquidityLayer.LIQUIDITY_LAYER);
 loader.register(orderbook.Witness);
-loader.register(orderbook.Bid);
 loader.register(orderbook.AdministratorsDfKey);
 loader.register(orderbook.Ask);
 loader.register(orderbook.AskClosedEvent);
 loader.register(orderbook.AskCreatedEvent);
+loader.register(orderbook.Bid);
 loader.register(orderbook.BidClosedEvent);
 loader.register(orderbook.BidCreatedEvent);
 loader.register(orderbook.IsDeprecatedDfKey);

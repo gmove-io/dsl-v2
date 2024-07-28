@@ -5,71 +5,6 @@ import {PKG_V1} from "../index";
 import {BcsType, bcs, fromB64, fromHEX, toHEX} from "@mysten/bcs";
 import {SuiClient, SuiParsedData} from "@mysten/sui/client";
 
-/* ============================== MarketKey =============================== */
-
-export function isMarketKey(type: string): boolean { type = compressSuiType(type); return type === `${PKG_V1}::english_auction::MarketKey`; }
-
-export interface MarketKeyFields { dummyField: ToField<"bool"> }
-
-export type MarketKeyReified = Reified< MarketKey, MarketKeyFields >;
-
-export class MarketKey implements StructClass { static readonly $typeName = `${PKG_V1}::english_auction::MarketKey`; static readonly $numTypeParams = 0;
-
- readonly $typeName = MarketKey.$typeName;
-
- readonly $fullTypeName: `${typeof PKG_V1}::english_auction::MarketKey`;
-
- readonly $typeArgs: [];
-
- readonly dummyField: ToField<"bool">
-
- private constructor(typeArgs: [], fields: MarketKeyFields, ) { this.$fullTypeName = composeSuiType( MarketKey.$typeName, ...typeArgs ) as `${typeof PKG_V1}::english_auction::MarketKey`; this.$typeArgs = typeArgs;
-
- this.dummyField = fields.dummyField; }
-
- static reified( ): MarketKeyReified { return { typeName: MarketKey.$typeName, fullTypeName: composeSuiType( MarketKey.$typeName, ...[] ) as `${typeof PKG_V1}::english_auction::MarketKey`, typeArgs: [ ] as [], reifiedTypeArgs: [], fromFields: (fields: Record<string, any>) => MarketKey.fromFields( fields, ), fromFieldsWithTypes: (item: FieldsWithTypes) => MarketKey.fromFieldsWithTypes( item, ), fromBcs: (data: Uint8Array) => MarketKey.fromBcs( data, ), bcs: MarketKey.bcs, fromJSONField: (field: any) => MarketKey.fromJSONField( field, ), fromJSON: (json: Record<string, any>) => MarketKey.fromJSON( json, ), fromSuiParsedData: (content: SuiParsedData) => MarketKey.fromSuiParsedData( content, ), fetch: async (client: SuiClient, id: string) => MarketKey.fetch( client, id, ), new: ( fields: MarketKeyFields, ) => { return new MarketKey( [], fields ) }, kind: "StructClassReified", } }
-
- static get r() { return MarketKey.reified() }
-
- static phantom( ): PhantomReified<ToTypeStr<MarketKey>> { return phantom(MarketKey.reified( )); } static get p() { return MarketKey.phantom() }
-
- static get bcs() { return bcs.struct("MarketKey", {
-
- dummy_field: bcs.bool()
-
-}) };
-
- static fromFields( fields: Record<string, any> ): MarketKey { return MarketKey.reified( ).new( { dummyField: decodeFromFields("bool", fields.dummy_field) } ) }
-
- static fromFieldsWithTypes( item: FieldsWithTypes ): MarketKey { if (!isMarketKey(item.type)) { throw new Error("not a MarketKey type");
-
- }
-
- return MarketKey.reified( ).new( { dummyField: decodeFromFieldsWithTypes("bool", item.fields.dummy_field) } ) }
-
- static fromBcs( data: Uint8Array ): MarketKey { return MarketKey.fromFields( MarketKey.bcs.parse(data) ) }
-
- toJSONField() { return {
-
- dummyField: this.dummyField,
-
-} }
-
- toJSON() { return { $typeName: this.$typeName, $typeArgs: this.$typeArgs, ...this.toJSONField() } }
-
- static fromJSONField( field: any ): MarketKey { return MarketKey.reified( ).new( { dummyField: decodeFromJSONField("bool", field.dummyField) } ) }
-
- static fromJSON( json: Record<string, any> ): MarketKey { if (json.$typeName !== MarketKey.$typeName) { throw new Error("not a WithTwoGenerics json object") };
-
- return MarketKey.fromJSONField( json, ) }
-
- static fromSuiParsedData( content: SuiParsedData ): MarketKey { if (content.dataType !== "moveObject") { throw new Error("not an object"); } if (!isMarketKey(content.type)) { throw new Error(`object at ${(content.fields as any).id} is not a MarketKey object`); } return MarketKey.fromFieldsWithTypes( content ); }
-
- static async fetch( client: SuiClient, id: string ): Promise<MarketKey> { const res = await client.getObject({ id, options: { showBcs: true, }, }); if (res.error) { throw new Error(`error fetching MarketKey object at id ${id}: ${res.error.code}`); } if (res.data?.bcs?.dataType !== "moveObject" || !isMarketKey(res.data.bcs.type)) { throw new Error(`object at id ${id} is not a MarketKey object`); }
- return MarketKey.fromBcs( fromB64(res.data.bcs.bcsBytes) ); }
-
- }
-
 /* ============================== Bid =============================== */
 
 export function isBid(type: string): boolean { type = compressSuiType(type); return type.startsWith(`${PKG_V1}::english_auction::Bid` + '<'); }
@@ -132,6 +67,71 @@ export class Bid<FT extends PhantomTypeArgument> implements StructClass { static
 
  static async fetch<FT extends PhantomReified<PhantomTypeArgument>>( client: SuiClient, typeArg: FT, id: string ): Promise<Bid<ToPhantomTypeArgument<FT>>> { const res = await client.getObject({ id, options: { showBcs: true, }, }); if (res.error) { throw new Error(`error fetching Bid object at id ${id}: ${res.error.code}`); } if (res.data?.bcs?.dataType !== "moveObject" || !isBid(res.data.bcs.type)) { throw new Error(`object at id ${id} is not a Bid object`); }
  return Bid.fromBcs( typeArg, fromB64(res.data.bcs.bcsBytes) ); }
+
+ }
+
+/* ============================== MarketKey =============================== */
+
+export function isMarketKey(type: string): boolean { type = compressSuiType(type); return type === `${PKG_V1}::english_auction::MarketKey`; }
+
+export interface MarketKeyFields { dummyField: ToField<"bool"> }
+
+export type MarketKeyReified = Reified< MarketKey, MarketKeyFields >;
+
+export class MarketKey implements StructClass { static readonly $typeName = `${PKG_V1}::english_auction::MarketKey`; static readonly $numTypeParams = 0;
+
+ readonly $typeName = MarketKey.$typeName;
+
+ readonly $fullTypeName: `${typeof PKG_V1}::english_auction::MarketKey`;
+
+ readonly $typeArgs: [];
+
+ readonly dummyField: ToField<"bool">
+
+ private constructor(typeArgs: [], fields: MarketKeyFields, ) { this.$fullTypeName = composeSuiType( MarketKey.$typeName, ...typeArgs ) as `${typeof PKG_V1}::english_auction::MarketKey`; this.$typeArgs = typeArgs;
+
+ this.dummyField = fields.dummyField; }
+
+ static reified( ): MarketKeyReified { return { typeName: MarketKey.$typeName, fullTypeName: composeSuiType( MarketKey.$typeName, ...[] ) as `${typeof PKG_V1}::english_auction::MarketKey`, typeArgs: [ ] as [], reifiedTypeArgs: [], fromFields: (fields: Record<string, any>) => MarketKey.fromFields( fields, ), fromFieldsWithTypes: (item: FieldsWithTypes) => MarketKey.fromFieldsWithTypes( item, ), fromBcs: (data: Uint8Array) => MarketKey.fromBcs( data, ), bcs: MarketKey.bcs, fromJSONField: (field: any) => MarketKey.fromJSONField( field, ), fromJSON: (json: Record<string, any>) => MarketKey.fromJSON( json, ), fromSuiParsedData: (content: SuiParsedData) => MarketKey.fromSuiParsedData( content, ), fetch: async (client: SuiClient, id: string) => MarketKey.fetch( client, id, ), new: ( fields: MarketKeyFields, ) => { return new MarketKey( [], fields ) }, kind: "StructClassReified", } }
+
+ static get r() { return MarketKey.reified() }
+
+ static phantom( ): PhantomReified<ToTypeStr<MarketKey>> { return phantom(MarketKey.reified( )); } static get p() { return MarketKey.phantom() }
+
+ static get bcs() { return bcs.struct("MarketKey", {
+
+ dummy_field: bcs.bool()
+
+}) };
+
+ static fromFields( fields: Record<string, any> ): MarketKey { return MarketKey.reified( ).new( { dummyField: decodeFromFields("bool", fields.dummy_field) } ) }
+
+ static fromFieldsWithTypes( item: FieldsWithTypes ): MarketKey { if (!isMarketKey(item.type)) { throw new Error("not a MarketKey type");
+
+ }
+
+ return MarketKey.reified( ).new( { dummyField: decodeFromFieldsWithTypes("bool", item.fields.dummy_field) } ) }
+
+ static fromBcs( data: Uint8Array ): MarketKey { return MarketKey.fromFields( MarketKey.bcs.parse(data) ) }
+
+ toJSONField() { return {
+
+ dummyField: this.dummyField,
+
+} }
+
+ toJSON() { return { $typeName: this.$typeName, $typeArgs: this.$typeArgs, ...this.toJSONField() } }
+
+ static fromJSONField( field: any ): MarketKey { return MarketKey.reified( ).new( { dummyField: decodeFromJSONField("bool", field.dummyField) } ) }
+
+ static fromJSON( json: Record<string, any> ): MarketKey { if (json.$typeName !== MarketKey.$typeName) { throw new Error("not a WithTwoGenerics json object") };
+
+ return MarketKey.fromJSONField( json, ) }
+
+ static fromSuiParsedData( content: SuiParsedData ): MarketKey { if (content.dataType !== "moveObject") { throw new Error("not an object"); } if (!isMarketKey(content.type)) { throw new Error(`object at ${(content.fields as any).id} is not a MarketKey object`); } return MarketKey.fromFieldsWithTypes( content ); }
+
+ static async fetch( client: SuiClient, id: string ): Promise<MarketKey> { const res = await client.getObject({ id, options: { showBcs: true, }, }); if (res.error) { throw new Error(`error fetching MarketKey object at id ${id}: ${res.error.code}`); } if (res.data?.bcs?.dataType !== "moveObject" || !isMarketKey(res.data.bcs.type)) { throw new Error(`object at id ${id} is not a MarketKey object`); }
+ return MarketKey.fromBcs( fromB64(res.data.bcs.bcsBytes) ); }
 
  }
 

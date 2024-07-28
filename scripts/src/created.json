@@ -1,82 +1,78 @@
 [
   {
-    "type": "dynamic_field::Field<0x2::transfer_policy::RuleKey<0x01735f24294e55a988541e97db050903cf8a70ce38c77ad219c134344eda67ac::royalty_strategy_bps::BpsRoyaltyStrategyRule>, bool>",
-    "id": "0x019ac76cbbcea4b20f5abc663def37bc6449e2c16591f3f068b3282efae6f869"
-  },
-  {
-    "type": "display::Display<0xf880fbe6055acfd674fe3713c26159e6a330c017ebb8566c9b01a5b4b7b7b602::dlab::Dlab>",
-    "id": "0x2451c8c8fb262f76fe4a4dbbbd9818f1f314e81089153eeeda91dbf93434a7c4"
-  },
-  {
-    "type": "transfer_policy::TransferPolicy<0xf880fbe6055acfd674fe3713c26159e6a330c017ebb8566c9b01a5b4b7b7b602::dlab::Dlab>",
-    "id": "0x3d18744923d68b3aabe0327515afce3b71a8bdaf4eb2a653cbdefc67cb414ba1"
-  },
-  {
-    "type": "dynamic_field::Field<0xcdbd730f422a89174ee4717e97a3db1c48b008f969eec00846a0d685b2437f8a::utils::Marker<0x01735f24294e55a988541e97db050903cf8a70ce38c77ad219c134344eda67ac::royalty::RoyaltyDomain>, 0x01735f24294e55a988541e97db050903cf8a70ce38c77ad219c134344eda67ac::royalty::RoyaltyDomain>",
-    "id": "0x453d2739afc98b09b928ea9f5cd94d03df018a5508f19d722aaafdd65e535f71"
-  },
-  {
-    "type": "dynamic_field::Field<0x2::transfer_policy::RuleKey<0x01735f24294e55a988541e97db050903cf8a70ce38c77ad219c134344eda67ac::transfer_allowlist::AllowlistRule>, bool>",
-    "id": "0x4985bfb404b7fd2def99c2e758adb8451639adbedb79090fa658e60fdb4d6668"
-  },
-  {
-    "type": "collection::Collection<0xf880fbe6055acfd674fe3713c26159e6a330c017ebb8566c9b01a5b4b7b7b602::dlab::Dlab>",
-    "id": "0x5da1cf07e3da28df5948def0acceddff44f4430265360010ea66d1cc57e1c84e"
-  },
-  {
-    "type": "mint_cap::MintCap<0xf880fbe6055acfd674fe3713c26159e6a330c017ebb8566c9b01a5b4b7b7b602::dlab::Dlab>",
-    "id": "0x60875ecf9d40af81efb0194c7131eee0521205cf272a8279e073647f01ee63d3"
-  },
-  {
     "type": "dynamic_field::Field<0xcdbd730f422a89174ee4717e97a3db1c48b008f969eec00846a0d685b2437f8a::utils::Marker<0x01735f24294e55a988541e97db050903cf8a70ce38c77ad219c134344eda67ac::creators::Creators>, 0x01735f24294e55a988541e97db050903cf8a70ce38c77ad219c134344eda67ac::creators::Creators>",
-    "id": "0x7c2b64c7ba4378577b8efacb1ba56c6f88a6016d444582f1c42f352694a9bac0"
-  },
-  {
-    "type": "orderbook::Orderbook<0xf880fbe6055acfd674fe3713c26159e6a330c017ebb8566c9b01a5b4b7b7b602::dlab::Dlab, 0x2::sui::SUI>",
-    "id": "0xa64f45713fb5b62c38469da7d117f69ea1bba4494d5e3d763b216945dd72e3b1"
-  },
-  {
-    "type": "dynamic_field::Field<0xcdbd730f422a89174ee4717e97a3db1c48b008f969eec00846a0d685b2437f8a::utils::Marker<0x01735f24294e55a988541e97db050903cf8a70ce38c77ad219c134344eda67ac::symbol::Symbol>, 0x01735f24294e55a988541e97db050903cf8a70ce38c77ad219c134344eda67ac::symbol::Symbol>",
-    "id": "0xa7ce2c03f20a45ba57f78751fbe4b1399f31d4602bc68183645e91c24aaa2de0"
-  },
-  {
-    "type": "package::Publisher",
-    "id": "0xa835ad4a1aa017c5c5341d4a4f2cc5b0ad63e2711f00047423d3f390c6ecd613"
-  },
-  {
-    "type": "dynamic_field::Field<0xcdbd730f422a89174ee4717e97a3db1c48b008f969eec00846a0d685b2437f8a::utils::Marker<0x01735f24294e55a988541e97db050903cf8a70ce38c77ad219c134344eda67ac::display_info::DisplayInfo>, 0x01735f24294e55a988541e97db050903cf8a70ce38c77ad219c134344eda67ac::display_info::DisplayInfo>",
-    "id": "0xa841fe38eb79d13a89c3ba1093a9cefa87d8befd9265ef74723fec61dd86fc3a"
-  },
-  {
-    "type": "dynamic_field::Field<0xaf6ff929224de84ca0372eceef9a1c891bae68d03427bfcf5e99458a2c1498a1::transfer_request::OBCustomRulesDfKey, u8>",
-    "id": "0xa8d673af115103f7d149b0efff1dd4987ab8d7352ab8c425d92d84e1b17f79c6"
-  },
-  {
-    "type": "request::PolicyCap",
-    "id": "0xac910a839c636b6849c947996011b1697b7e83676ee55146d6b67d58a211050f"
-  },
-  {
-    "type": "package::UpgradeCap",
-    "id": "0xd140bbd371d5d4b8e8a0c82b53ea9a5ac9a0e0b41de36390f77c80eaf4aaa8d8"
-  },
-  {
-    "type": "royalty_strategy_bps::BpsRoyaltyStrategy<0xf880fbe6055acfd674fe3713c26159e6a330c017ebb8566c9b01a5b4b7b7b602::dlab::Dlab>",
-    "id": "0xeb5a067c0c6d894834e040332e6fbc77dc9c37dc56fba550c1ba0e6ed6891dc2"
-  },
-  {
-    "type": "transfer_policy::TransferPolicyCap<0xf880fbe6055acfd674fe3713c26159e6a330c017ebb8566c9b01a5b4b7b7b602::dlab::Dlab>",
-    "id": "0xf107c58a4ab1bf5885ae0336e9308f832e839ef2791e443e87d73ecf2ae10ec2"
-  },
-  {
-    "type": "request::Policy<0xaf6ff929224de84ca0372eceef9a1c891bae68d03427bfcf5e99458a2c1498a1::request::WithNft<0xf880fbe6055acfd674fe3713c26159e6a330c017ebb8566c9b01a5b4b7b7b602::dlab::Dlab, 0xaf6ff929224de84ca0372eceef9a1c891bae68d03427bfcf5e99458a2c1498a1::withdraw_request::WITHDRAW_REQ>>",
-    "id": "0xf6dcf053a0b8e815a41d4815f03161939affdbbed23062c01c359a8f3df6b6b7"
+    "id": "0x05573c7bdd9bc313affdb9d64dbb8d91b5d8ded707e4b48d5ffa0f1a1b589e8f"
   },
   {
     "type": "package_id",
-    "id": "0xf880fbe6055acfd674fe3713c26159e6a330c017ebb8566c9b01a5b4b7b7b602"
+    "id": "0x1abc7dd23ca95e3780c84825e57ba06a06816d74860d01dbedef6411c2fbb57d"
   },
   {
-    "type": "dynamic_field::Field<0xaf6ff929224de84ca0372eceef9a1c891bae68d03427bfcf5e99458a2c1498a1::request::RuleStateDfKey<0xf880fbe6055acfd674fe3713c26159e6a330c017ebb8566c9b01a5b4b7b7b602::dlab::Witness>, bool>",
-    "id": "0xfdff440d9b5b71bdabf180e7a08bf46e4d2e5f9c2b5aaf204f3566b67b74fa9c"
+    "type": "orderbook::Orderbook<0x1abc7dd23ca95e3780c84825e57ba06a06816d74860d01dbedef6411c2fbb57d::dlab::Dlab, 0x2::sui::SUI>",
+    "id": "0x1d485f4a91eddbd89efe472fb1b84a825504a12fb18054c08899f8ecff3ca03c"
+  },
+  {
+    "type": "package::UpgradeCap",
+    "id": "0x45656d33fae11ba98e376d52b63ef206d6d0d24d0466f468ea6a2c5967d9f970"
+  },
+  {
+    "type": "mint_cap::MintCap<0x1abc7dd23ca95e3780c84825e57ba06a06816d74860d01dbedef6411c2fbb57d::dlab::Dlab>",
+    "id": "0x4667808a5b8c170534c260bbb242abb3ac7770fc01fb41d42994e07483207467"
+  },
+  {
+    "type": "request::Policy<0xaf6ff929224de84ca0372eceef9a1c891bae68d03427bfcf5e99458a2c1498a1::request::WithNft<0x1abc7dd23ca95e3780c84825e57ba06a06816d74860d01dbedef6411c2fbb57d::dlab::Dlab, 0xaf6ff929224de84ca0372eceef9a1c891bae68d03427bfcf5e99458a2c1498a1::withdraw_request::WITHDRAW_REQ>>",
+    "id": "0x46ad2485b7e9c3b4594a520c66ea9eb3cbef43b4439e4ebe8d86c69444cd9694"
+  },
+  {
+    "type": "dynamic_field::Field<0x2::transfer_policy::RuleKey<0x01735f24294e55a988541e97db050903cf8a70ce38c77ad219c134344eda67ac::transfer_allowlist::AllowlistRule>, bool>",
+    "id": "0x57b56696c5bb44bae2ee8bb93609abea32de14ed2057021670e3c5b97287ce34"
+  },
+  {
+    "type": "dynamic_field::Field<0xaf6ff929224de84ca0372eceef9a1c891bae68d03427bfcf5e99458a2c1498a1::request::RuleStateDfKey<0x1abc7dd23ca95e3780c84825e57ba06a06816d74860d01dbedef6411c2fbb57d::dlab::Witness>, bool>",
+    "id": "0x5a7812ebef2f10be8c57030c91eed1b5eb3591802ad202204b6387168e424fa5"
+  },
+  {
+    "type": "dynamic_field::Field<0xaf6ff929224de84ca0372eceef9a1c891bae68d03427bfcf5e99458a2c1498a1::transfer_request::OBCustomRulesDfKey, u8>",
+    "id": "0x62b3a5c56e9d61ffa9c10d7a5a03d8192bc603151dd36031d7539ce9df51d57b"
+  },
+  {
+    "type": "package::Publisher",
+    "id": "0x6af3b2a55352264062e3179d42d1341e7974faee29776c6bdea26a23b42fd5d0"
+  },
+  {
+    "type": "dynamic_field::Field<0x2::transfer_policy::RuleKey<0x01735f24294e55a988541e97db050903cf8a70ce38c77ad219c134344eda67ac::royalty_strategy_bps::BpsRoyaltyStrategyRule>, bool>",
+    "id": "0x6feb686129a8a6f48a1a21e48db9d016def5758084308962f315111cb3b388e3"
+  },
+  {
+    "type": "transfer_policy::TransferPolicyCap<0x1abc7dd23ca95e3780c84825e57ba06a06816d74860d01dbedef6411c2fbb57d::dlab::Dlab>",
+    "id": "0x71a99f962d3cd19ec1fbca6dea32b6b07c986410776d8be76d85c0ee16dd0c4f"
+  },
+  {
+    "type": "display::Display<0x1abc7dd23ca95e3780c84825e57ba06a06816d74860d01dbedef6411c2fbb57d::dlab::Dlab>",
+    "id": "0x7cd4d92ab6ed89c7211f835f6a7704946062949d50ae8104d5597a5d56c2b1bc"
+  },
+  {
+    "type": "collection::Collection<0x1abc7dd23ca95e3780c84825e57ba06a06816d74860d01dbedef6411c2fbb57d::dlab::Dlab>",
+    "id": "0x7d17906622b4d824901c1753035673c109d2eb23b827058a8cff37f20e796a6a"
+  },
+  {
+    "type": "transfer_policy::TransferPolicy<0x1abc7dd23ca95e3780c84825e57ba06a06816d74860d01dbedef6411c2fbb57d::dlab::Dlab>",
+    "id": "0xb2363d3b8b2d0ee3715619eb68031658715f9cafe646112d9e71f86459e8c727"
+  },
+  {
+    "type": "royalty_strategy_bps::BpsRoyaltyStrategy<0x1abc7dd23ca95e3780c84825e57ba06a06816d74860d01dbedef6411c2fbb57d::dlab::Dlab>",
+    "id": "0xcb7f5820195e4fcf6de42e3aef79126cb0ee1ed4c33516d947f0a6fd4bcebd6a"
+  },
+  {
+    "type": "dynamic_field::Field<0xcdbd730f422a89174ee4717e97a3db1c48b008f969eec00846a0d685b2437f8a::utils::Marker<0x01735f24294e55a988541e97db050903cf8a70ce38c77ad219c134344eda67ac::symbol::Symbol>, 0x01735f24294e55a988541e97db050903cf8a70ce38c77ad219c134344eda67ac::symbol::Symbol>",
+    "id": "0xda90bdbaaf2a655a24c702b0028dd92ac189c24ba86812ed59dd007cebb1930c"
+  },
+  {
+    "type": "dynamic_field::Field<0xcdbd730f422a89174ee4717e97a3db1c48b008f969eec00846a0d685b2437f8a::utils::Marker<0x01735f24294e55a988541e97db050903cf8a70ce38c77ad219c134344eda67ac::royalty::RoyaltyDomain>, 0x01735f24294e55a988541e97db050903cf8a70ce38c77ad219c134344eda67ac::royalty::RoyaltyDomain>",
+    "id": "0xdf022fca454ae685c4314648e926a677bfab241137263becdf0ec86b3b27199b"
+  },
+  {
+    "type": "dynamic_field::Field<0xcdbd730f422a89174ee4717e97a3db1c48b008f969eec00846a0d685b2437f8a::utils::Marker<0x01735f24294e55a988541e97db050903cf8a70ce38c77ad219c134344eda67ac::display_info::DisplayInfo>, 0x01735f24294e55a988541e97db050903cf8a70ce38c77ad219c134344eda67ac::display_info::DisplayInfo>",
+    "id": "0xf30f03d8011244815d9e9388860c1b55dd7b56ba607f6aafe2e5d8246ed3fea9"
   }
 ]

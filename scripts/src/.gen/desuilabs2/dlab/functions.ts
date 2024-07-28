@@ -1,8 +1,8 @@
-import {PUBLISHED_AT} from "..";
-import {String as String1} from "../../_dependencies/source/0x1/ascii/structs";
-import {String} from "../../_dependencies/source/0x1/string/structs";
-import {ID} from "../../_dependencies/source/0x2/object/structs";
-import {obj, pure} from "../../_framework/util";
+import {PUBLISHED_AT} from "../index.js";
+import {String as String1} from "../../_dependencies/source/0x1/ascii/structs.js";
+import {String} from "../../_dependencies/source/0x1/string/structs.js";
+import {ID} from "../../_dependencies/source/0x2/object/structs.js";
+import {obj, pure} from "../../_framework/util.js";
 import {Transaction, TransactionArgument, TransactionObjectInput} from "@mysten/sui/transactions";
 
 export interface MintArgs { name: string | TransactionArgument; description: string | TransactionArgument; url: Array<number | TransactionArgument> | TransactionArgument; attributesKeys: Array<string | TransactionArgument> | TransactionArgument; attributesValues: Array<string | TransactionArgument> | TransactionArgument; mintCap: TransactionObjectInput }
@@ -10,6 +10,10 @@ export interface MintArgs { name: string | TransactionArgument; description: str
 export function mint( tx: Transaction, args: MintArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::dlab::mint`, arguments: [ pure(tx, args.name, `${String.$typeName}`), pure(tx, args.description, `${String.$typeName}`), pure(tx, args.url, `vector<u8>`), pure(tx, args.attributesKeys, `vector<${String1.$typeName}>`), pure(tx, args.attributesValues, `vector<${String1.$typeName}>`), obj(tx, args.mintCap) ], }) }
 
 export function init( tx: Transaction, witness: TransactionObjectInput ) { return tx.moveCall({ target: `${PUBLISHED_AT}::dlab::init`, arguments: [ obj(tx, witness) ], }) }
+
+export interface AirUpgradeNftArgs { policy: TransactionObjectInput; kiosk: TransactionObjectInput; nftId: string | TransactionArgument; url: string | TransactionArgument }
+
+export function airUpgradeNft( tx: Transaction, args: AirUpgradeNftArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::dlab::air_upgrade_nft`, arguments: [ obj(tx, args.policy), obj(tx, args.kiosk), pure(tx, args.nftId, `${ID.$typeName}`), pure(tx, args.url, `${String1.$typeName}`) ], }) }
 
 export interface BurnNftArgs { collection: TransactionObjectInput; nft: TransactionObjectInput }
 
@@ -27,9 +31,9 @@ export interface BurnNftInListingWithIdArgs { collection: TransactionObjectInput
 
 export function burnNftInListingWithId( tx: Transaction, args: BurnNftInListingWithIdArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::dlab::burn_nft_in_listing_with_id`, arguments: [ obj(tx, args.collection), obj(tx, args.listing), pure(tx, args.inventoryId, `${ID.$typeName}`), pure(tx, args.nftId, `${ID.$typeName}`) ], }) }
 
-export interface EmitUpgradeArgs { collection: TransactionObjectInput; nft: TransactionObjectInput }
+export function createBorrowPolicy( tx: Transaction, publisher: TransactionObjectInput ) { return tx.moveCall({ target: `${PUBLISHED_AT}::dlab::create_borrow_policy`, arguments: [ obj(tx, publisher) ], }) }
 
-export function emitUpgrade( tx: Transaction, args: EmitUpgradeArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::dlab::emit_upgrade`, arguments: [ obj(tx, args.collection), obj(tx, args.nft) ], }) }
+export function emitUpgrade( tx: Transaction, nft: TransactionObjectInput ) { return tx.moveCall({ target: `${PUBLISHED_AT}::dlab::emit_upgrade`, arguments: [ obj(tx, nft) ], }) }
 
 export interface MintNftToKioskArgs { name: string | TransactionArgument; description: string | TransactionArgument; url: Array<number | TransactionArgument> | TransactionArgument; attributesKeys: Array<string | TransactionArgument> | TransactionArgument; attributesValues: Array<string | TransactionArgument> | TransactionArgument; mintCap: TransactionObjectInput; receiver: TransactionObjectInput }
 
@@ -43,13 +47,13 @@ export interface MintNftToWarehouseArgs { name: string | TransactionArgument; de
 
 export function mintNftToWarehouse( tx: Transaction, args: MintNftToWarehouseArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::dlab::mint_nft_to_warehouse`, arguments: [ pure(tx, args.name, `${String.$typeName}`), pure(tx, args.description, `${String.$typeName}`), pure(tx, args.url, `vector<u8>`), pure(tx, args.attributesKeys, `vector<${String1.$typeName}>`), pure(tx, args.attributesValues, `vector<${String1.$typeName}>`), obj(tx, args.mintCap), obj(tx, args.warehouse) ], }) }
 
-export interface UpgradeNftArgs { collection: TransactionObjectInput; nft: TransactionObjectInput; url: string | TransactionArgument }
+export interface UpgradeNftArgs { nft: TransactionObjectInput; url: string | TransactionArgument }
 
-export function upgradeNft( tx: Transaction, args: UpgradeNftArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::dlab::upgrade_nft`, arguments: [ obj(tx, args.collection), obj(tx, args.nft), pure(tx, args.url, `${String1.$typeName}`) ], }) }
+export function upgradeNft( tx: Transaction, args: UpgradeNftArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::dlab::upgrade_nft`, arguments: [ obj(tx, args.nft), pure(tx, args.url, `${String1.$typeName}`) ], }) }
 
-export interface UpgradeNftInKioskArgs { collection: TransactionObjectInput; policy: TransactionObjectInput; kiosk: TransactionObjectInput; nftId: string | TransactionArgument; url: string | TransactionArgument }
+export interface UpgradeNftInKioskArgs { policy: TransactionObjectInput; kiosk: TransactionObjectInput; nftId: string | TransactionArgument; url: string | TransactionArgument }
 
-export function upgradeNftInKiosk( tx: Transaction, args: UpgradeNftInKioskArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::dlab::upgrade_nft_in_kiosk`, arguments: [ obj(tx, args.collection), obj(tx, args.policy), obj(tx, args.kiosk), pure(tx, args.nftId, `${ID.$typeName}`), pure(tx, args.url, `${String1.$typeName}`) ], }) }
+export function upgradeNftInKiosk( tx: Transaction, args: UpgradeNftInKioskArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::dlab::upgrade_nft_in_kiosk`, arguments: [ obj(tx, args.policy), obj(tx, args.kiosk), pure(tx, args.nftId, `${ID.$typeName}`), pure(tx, args.url, `${String1.$typeName}`) ], }) }
 
 export interface UpgradeToV2Args { nft: TransactionObjectInput; url: string | TransactionArgument }
 

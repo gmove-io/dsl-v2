@@ -1,8 +1,8 @@
-import {PUBLISHED_AT} from "..";
-import {String as String1} from "../../_dependencies/source/0x1/ascii/structs";
-import {String} from "../../_dependencies/source/0x1/string/structs";
-import {ID} from "../../_dependencies/source/0x2/object/structs";
-import {obj, pure} from "../../_framework/util";
+import {PUBLISHED_AT} from "../index.js";
+import {String as String1} from "../../_dependencies/source/0x1/ascii/structs.js";
+import {String} from "../../_dependencies/source/0x1/string/structs.js";
+import {ID} from "../../_dependencies/source/0x2/object/structs.js";
+import {obj, pure} from "../../_framework/util.js";
 import {Transaction, TransactionArgument, TransactionObjectInput} from "@mysten/sui/transactions";
 
 export interface MintArgs { name: string | TransactionArgument; description: string | TransactionArgument; url: Array<number | TransactionArgument> | TransactionArgument; attributesKeys: Array<string | TransactionArgument> | TransactionArgument; attributesValues: Array<string | TransactionArgument> | TransactionArgument; mintCap: TransactionObjectInput }

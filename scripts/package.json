@@ -11,7 +11,7 @@
     "upgrade": "bun ./src/upgrade.ts",
     "mint": "bun ./src/mint.ts",
     "upgrade-nft": "bun ./src/upgrade-nft.ts",
-    "prepare-shop": "bun ./src/prepare-shop.ts"
+    "create-policy": "bun ./src/create-policy.ts"
   },
   "dependencies": {
     "@mysten/sui": "^1.3.1",

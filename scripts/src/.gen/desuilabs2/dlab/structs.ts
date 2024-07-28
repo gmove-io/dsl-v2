@@ -207,7 +207,7 @@ export class Dlab implements StructClass { static readonly $typeName = `${PKG_V1
 
 export function isUpgrade(type: string): boolean { type = compressSuiType(type); return type === `${PKG_V2}::dlab::Upgrade`; }
 
-export interface UpgradeFields { collection: ToField<"address">; nft: ToField<"address"> }
+export interface UpgradeFields { nft: ToField<"address"> }
 
 export type UpgradeReified = Reified< Upgrade, UpgradeFields >;
 
@@ -219,11 +219,11 @@ export class Upgrade implements StructClass { static readonly $typeName = `${PKG
 
  readonly $typeArgs: [];
 
- readonly collection: ToField<"address">; readonly nft: ToField<"address">
+ readonly nft: ToField<"address">
 
  private constructor(typeArgs: [], fields: UpgradeFields, ) { this.$fullTypeName = composeSuiType( Upgrade.$typeName, ...typeArgs ) as `${typeof PKG_V2}::dlab::Upgrade`; this.$typeArgs = typeArgs;
 
- this.collection = fields.collection;; this.nft = fields.nft; }
+ this.nft = fields.nft; }
 
  static reified( ): UpgradeReified { return { typeName: Upgrade.$typeName, fullTypeName: composeSuiType( Upgrade.$typeName, ...[] ) as `${typeof PKG_V2}::dlab::Upgrade`, typeArgs: [ ] as [], reifiedTypeArgs: [], fromFields: (fields: Record<string, any>) => Upgrade.fromFields( fields, ), fromFieldsWithTypes: (item: FieldsWithTypes) => Upgrade.fromFieldsWithTypes( item, ), fromBcs: (data: Uint8Array) => Upgrade.fromBcs( data, ), bcs: Upgrade.bcs, fromJSONField: (field: any) => Upgrade.fromJSONField( field, ), fromJSON: (json: Record<string, any>) => Upgrade.fromJSON( json, ), fromSuiParsedData: (content: SuiParsedData) => Upgrade.fromSuiParsedData( content, ), fetch: async (client: SuiClient, id: string) => Upgrade.fetch( client, id, ), new: ( fields: UpgradeFields, ) => { return new Upgrade( [], fields ) }, kind: "StructClassReified", } }
 
@@ -233,29 +233,29 @@ export class Upgrade implements StructClass { static readonly $typeName = `${PKG
 
  static get bcs() { return bcs.struct("Upgrade", {
 
- collection: bcs.bytes(32).transform({ input: (val: string) => fromHEX(val), output: (val: Uint8Array) => toHEX(val), }), nft: bcs.bytes(32).transform({ input: (val: string) => fromHEX(val), output: (val: Uint8Array) => toHEX(val), })
+ nft: bcs.bytes(32).transform({ input: (val: string) => fromHEX(val), output: (val: Uint8Array) => toHEX(val), })
 
 }) };
 
- static fromFields( fields: Record<string, any> ): Upgrade { return Upgrade.reified( ).new( { collection: decodeFromFields("address", fields.collection), nft: decodeFromFields("address", fields.nft) } ) }
+ static fromFields( fields: Record<string, any> ): Upgrade { return Upgrade.reified( ).new( { nft: decodeFromFields("address", fields.nft) } ) }
 
  static fromFieldsWithTypes( item: FieldsWithTypes ): Upgrade { if (!isUpgrade(item.type)) { throw new Error("not a Upgrade type");
 
  }
 
- return Upgrade.reified( ).new( { collection: decodeFromFieldsWithTypes("address", item.fields.collection), nft: decodeFromFieldsWithTypes("address", item.fields.nft) } ) }
+ return Upgrade.reified( ).new( { nft: decodeFromFieldsWithTypes("address", item.fields.nft) } ) }
 
  static fromBcs( data: Uint8Array ): Upgrade { return Upgrade.fromFields( Upgrade.bcs.parse(data) ) }
 
  toJSONField() { return {
 
- collection: this.collection,nft: this.nft,
+ nft: this.nft,
 
 } }
 
  toJSON() { return { $typeName: this.$typeName, $typeArgs: this.$typeArgs, ...this.toJSONField() } }
 
- static fromJSONField( field: any ): Upgrade { return Upgrade.reified( ).new( { collection: decodeFromJSONField("address", field.collection), nft: decodeFromJSONField("address", field.nft) } ) }
+ static fromJSONField( field: any ): Upgrade { return Upgrade.reified( ).new( { nft: decodeFromJSONField("address", field.nft) } ) }
 
  static fromJSON( json: Record<string, any> ): Upgrade { if (json.$typeName !== Upgrade.$typeName) { throw new Error("not a WithTwoGenerics json object") };
 
