@@ -21,7 +21,7 @@ desuilabs = { local = "../dlab_v2" }
 
 [addresses]
 dsl_staking = "0x0"
-desuilabs = "0x7ff57beccfa2c8664643da447f82a55a84735b356eea28180ff794567211b030"
+desuilabs = "0x09a422886ab18c9fbaab4345fd57707bf79b65a18ab251213c5fff614bd628ef"
 sui = "0x2"
 
 # Named addresses will be accessible in Move as `@name`. They're also exported:

@@ -425,6 +425,26 @@ module desuilabs::dlab {
         ob_kiosk::return_nft<Witness, Dlab>(kiosk, request, policy);
     }
 
+    // === Staking ===
+
+    public(package) fun withdraw_from_kiosk(
+        policy: &Policy<WithNft<Dlab, WITHDRAW_REQ>>,
+        kiosk: &mut Kiosk,
+        nft_id: ID,
+        ctx: &mut TxContext,
+    ): Dlab {
+        let (nft, mut withdraw_request) = ob_kiosk::withdraw_nft_signed(
+            kiosk, 
+            nft_id, 
+            ctx
+        );
+
+        withdraw_request.add_receipt(&Witness {});
+        withdraw_request.confirm(policy);
+        
+        nft
+    }
+
     // === Utils ===
 
     fun upgrade_to_v2(nft: &mut Dlab, url: ascii::String) {
