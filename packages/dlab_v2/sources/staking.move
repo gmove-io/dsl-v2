@@ -46,7 +46,7 @@ module desuilabs::staking {
             last_time: _,
             nfts,
         } = staked;
-        
+
         id.delete();
         nfts.destroy_empty();
         assert!(to_claim == 0, ERewardsToBeClaimed);

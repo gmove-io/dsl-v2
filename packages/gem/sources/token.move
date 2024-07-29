@@ -1,4 +1,4 @@
-module desuilabs::gem {
+module gem::gem {
     use sui::{
         token::{Self, Token},
         coin::{Self, TreasuryCap},
@@ -43,5 +43,10 @@ module desuilabs::gem {
 
     public fun join(token: &mut Token<GEM>, other: Token<GEM>) {
         token::join(token, other);
+    }
+
+    #[test_only]
+    public fun init_for_testing(ctx: &mut TxContext) {
+        init(GEM {}, ctx);
     }
 }

@@ -1,5 +1,5 @@
 [package]
-name = "dsl_staking"
+name = "gem"
 edition = "2024.beta" # edition = "legacy" to use legacy (pre-2024) Move
 # license = ""           # e.g., "MIT", "GPL", "Apache 2.0"
 # authors = ["..."]      # e.g., ["Joe Smith (joesmith@noemail.com)", "John Snow (johnsnow@noemail.com)"]
@@ -20,7 +20,7 @@ desuilabs = { local = "../dlab_v2" }
 # Override = { local = "../conflicting/version", override = true }
 
 [addresses]
-dsl_staking = "0x0"
+gem = "0x0"
 desuilabs = "0x09a422886ab18c9fbaab4345fd57707bf79b65a18ab251213c5fff614bd628ef"
 sui = "0x2"
 
