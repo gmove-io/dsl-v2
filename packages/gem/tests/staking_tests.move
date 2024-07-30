@@ -112,13 +112,85 @@ module gem::staking_tests {
         assert!(token.value() == 3);
         staked.unstake(&mut kiosk, id, world.scenario.ctx());
 
-        world.scenario.next_tx(OWNER); 
-        let (nft, req) = ob_kiosk::withdraw_nft_signed<Dlab>(&mut kiosk, id, world.scenario.ctx());
         staked.destroy_empty();
-
-        destroy(req);
-        destroy(nft);
         destroy(token);
+        destroy(kiosk);
+        end(world);
+    }
+
+    #[test]
+    public fun stake_2_nfts() {
+        let mut world = start_world();
+
+        world.scenario.next_tx(OWNER);
+        let nft1 = dlab::mint_for_testing(
+            b"DeSuiLab".to_string(),
+            b"Original".to_string(),
+            b"pixel art",
+            vector[b"1 face".to_ascii_string()],
+            vector[b"red".to_ascii_string()],
+            &mut world.mint_cap,
+            world.scenario.ctx()
+        );
+        let id1 = object::id(&nft1);
+        let nft2 = dlab::mint_for_testing(
+            b"DeSuiLab".to_string(),
+            b"Original".to_string(),
+            b"pixel art",
+            vector[b"1 face".to_ascii_string()],
+            vector[b"red".to_ascii_string()],
+            &mut world.mint_cap,
+            world.scenario.ctx()
+        );
+        let id2 = object::id(&nft2);
+
+        world.scenario.next_tx(OWNER); 
+        let (mut kiosk, _) = ob_kiosk::new_for_address(OWNER, world.scenario.ctx());
+        ob_kiosk::deposit(&mut kiosk, nft1, world.scenario.ctx());
+        ob_kiosk::deposit(&mut kiosk, nft2, world.scenario.ctx());
+
+        world.scenario.next_tx(OWNER); 
+        let mut staked = staking::new(world.scenario.ctx());
+        staked.stake(&world.policy, &mut kiosk, id1, world.scenario.ctx());
+
+        world.scenario.next_epoch(OWNER);
+        staked.stake(&world.policy, &mut kiosk, id2, world.scenario.ctx());
+        assert!(staked.to_claim() == 1);
+        assert!(staked.last_time() == 1);
+
+        world.scenario.next_epoch(OWNER);
+        world.scenario.next_epoch(OWNER);
+        world.manager.claim_staking_rewards(&mut staked, world.scenario.ctx());
+
+        world.scenario.next_tx(OWNER); 
+        let mut token1 = world.scenario.take_from_sender<Token<GEM>>();
+        assert!(token1.value() == 5);
+        assert!(staked.to_claim() == 0);
+        assert!(staked.last_time() == 3);
+
+        world.scenario.next_epoch(OWNER);
+        staked.unstake(&mut kiosk, id1, world.scenario.ctx());
+        assert!(staked.to_claim() == 2);
+        assert!(staked.last_time() == 4);
+
+        world.scenario.next_epoch(OWNER);
+        staked.unstake(&mut kiosk, id2, world.scenario.ctx());
+        assert!(staked.to_claim() == 3);
+        assert!(staked.last_time() == 5);
+
+        world.scenario.next_epoch(OWNER);
+        world.manager.claim_staking_rewards(&mut staked, world.scenario.ctx());
+
+        world.scenario.next_tx(OWNER); 
+        let token2 = world.scenario.take_from_sender<Token<GEM>>();
+        assert!(token2.value() == 3);
+        assert!(staked.to_claim() == 0);
+        assert!(staked.last_time() == 6);
+
+        token1.join(token2);
+
+        staked.destroy_empty();
+        destroy(token1);
         destroy(kiosk);
         end(world);
     }

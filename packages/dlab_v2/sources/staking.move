@@ -60,12 +60,17 @@ module desuilabs::staking {
         ctx: &mut TxContext,
     ) {
         let nft = dlab::withdraw_from_kiosk(policy, kiosk, nft_id, ctx);
+        if (!staked.nfts.is_empty()) {
+            staked.to_claim = staked.to_claim + (ctx.epoch() - staked.last_time) * staked.nfts.length();
+            staked.last_time = ctx.epoch();
+        };
         staked.nfts.push_back(nft);
-        if (!staked.nfts.is_empty())
-            staked.to_claim = staked.to_claim + (ctx.epoch() - staked.last_time);
     }
 
     public fun unstake(staked: &mut StakedDsl, kiosk: &mut Kiosk, nft_id: ID, ctx: &mut TxContext) {
+        staked.to_claim = staked.to_claim + (ctx.epoch() - staked.last_time) * staked.nfts.length();
+        staked.last_time = ctx.epoch();
+
         let len = staked.nfts.length();
         let mut i = 0;
         let idx = loop {
@@ -94,6 +99,10 @@ module desuilabs::staking {
 
     public fun last_time(staked: &StakedDsl): u64 {
         staked.last_time
+    }
+
+    public fun nfts(staked: &StakedDsl): &vector<Dlab> {
+        &staked.nfts
     }
 
 }

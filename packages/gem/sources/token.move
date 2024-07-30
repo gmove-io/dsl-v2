@@ -36,9 +36,10 @@ module gem::gem {
     }
 
     public fun claim_staking_rewards(manager: &mut GemManager, staked: &mut StakedDsl, ctx: &mut TxContext) {
-        let amount = staked.to_claim() + (ctx.epoch() - staked.last_time());
+        let amount = staked.to_claim() + (ctx.epoch() - staked.last_time()) * staked.nfts().length();
         let token = token::mint(&mut manager.cap, amount, ctx);
         token.keep(ctx);
+        staked.reset(ctx);
     }
 
     public fun join(token: &mut Token<GEM>, other: Token<GEM>) {
